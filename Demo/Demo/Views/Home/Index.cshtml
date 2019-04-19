@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .col-md-4 {
+        width: 35%;
+        padding: 10px; 
+        margin: 5px;
+        float:left;
+    }
+    .col-md-8 {
+        padding: 10px;
+        margin: 5px;
+        width: 58%;
+        float:left;
+    }
+    .clearfix {clear:both;}
+    table tr.line-name {
+        padding: 10px;
+    }
+    table tr:hover {
+        cursor:pointer;
+        background-color: #ebe8e8;
+    }
+    table tr.line-name:hover {
+        background-color: #ffffff;
+    }
+    input,select {
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .btn-edit, .btn-delete {
+        padding: 4px 10px;
+        margin-top: -5px;
+    }
+</style>
+
+@section scripts {
+    <script src="/Scripts/mustache.min.js"></script>
+    <script src="/Scripts/support.js"></script>
+}
+
+<div style="margin: 50px 0px 30px 0;font-weight: bold;font-size: 18px; width:100%;">
+    <strong>Quản Lý Danh Sách Sinh Viên</strong>
+    <div id="btnCreate" class="btn btn-info" style="float:right;">Create</div>
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr class="line-name">
+            <th>Mã SV</th>
+            <th>Họ Tên</th>
+            <th>Ngày Sinh</th>
+            <th>Tên Lớp</th>
+            <th>Giới Tính</th>
+            <th>Học Bổng</th>
+            <th>#</th>
+        </tr>
+        <tbody id="tblInfo"></tbody>
+    </table>
+
+    <script id="info-data" type="x-tmpl-mustache">
+        <tr>
+            <td>{{Id}}</td>
+            <td>{{HoTen}}</td>
+            <td>{{NgaySinh}}</td>
+            <td>{{TenLop}}</td>
+            <td>{{GioiTinh}}</td>
+            <td>{{HocBong}}</td>
+            <td>
+                <div data-id="{{Id}}" class="btn btn-info btn-edit">Edit</div> |
+                <div data-id="{{Id}}" class="btn btn-danger btn-delete">Delete</div>
+            </td>
+        </tr>
+    </script>
+</div>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông Tin Sinh Viên</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="text" id="masv" value="0" hidden />
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label>Họ Tên Sinh Viên:</label></div>
+                    <div class="col-md-8"><input type="text" id="hoten"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label>Tên Lớp:</label></div>
+                    <div class="col-md-8">
+                        <select id="tenlop">
+                            <option value="0" selected>Công Nghệ Thông Tin</option>
+                            <option value="1">Kinh Tế Học</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label>Ngày Sinh:</label></div>
+                    <div class="col-md-8"><input type="date" id="ngaysinh" placeholder="dd/MM/yyyy"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label>Học Bổng:</label></div>
+                    <div class="col-md-8"><input type="number" id="hocbong"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"><label>Giới Tính:</label></div>
+                    <div class="col-md-8"><input type="checkbox" id="gioitinh"/> Nam</div>
+                </div>
+
+                <div class="modal-footer">
+                    <div id="btnSave" class="btn btn-default" data-dismiss="modal">Save</div>
+                    <div type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 50px;">Close</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
