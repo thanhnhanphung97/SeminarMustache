@@ -32,19 +32,6 @@ namespace Demo.Controllers
                 }
                 return Json(new { data = listsinhvien, date = date }, JsonRequestBehavior.AllowGet);
             }
-
-
-
-            //var jsonData = System.IO.File.ReadAllText(filePath);
-            //var introList = JsonConvert.DeserializeObject<List<SinhVien>>(jsonData);
-            //SinhVien newEntity = new SinhVien();
-            //newEntity.Id = 5;
-            //newEntity.Name = "AAA";
-            //newEntity.Data = 123;
-            //introList.Add(newEntity);
-            //jsonData = JsonConvert.SerializeObject(introList);
-            //System.IO.File.WriteAllText(filePath, jsonData);
-
         }
 
         [HttpGet]
@@ -84,7 +71,7 @@ namespace Demo.Controllers
                     return Json(new { mes = "fail" });
                 }
             }
-            else
+            if(sinhvien.Id != 0)
             {
                 var jsondata = System.IO.File.ReadAllText(filePath);
                 var listsinhvien = JsonConvert.DeserializeObject<List<SinhVien>>(jsondata);
@@ -103,6 +90,7 @@ namespace Demo.Controllers
                 System.IO.File.WriteAllText(filePath, jsondata);
                 return Json(new { mes = "success" });
             }
+            else return Json(new { mes = "fail" });
         }
         [HttpPost]
         public JsonResult DeleteData(int Id)

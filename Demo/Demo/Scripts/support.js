@@ -10,6 +10,7 @@
             $('#myModal').modal('show');
         });
         $('#btnCreate').on('click', function () {
+            support.resetForm();
             $('#myModal').modal('show');
         });
         $('#btnSave').on('click', function () {
@@ -40,7 +41,7 @@
                         HoTen: item.HoTen,
                         NgaySinh: date[i],
                         TenLop: item.TenLop,
-                        GioiTinh: item.GioiTinh,
+                        GioiTinh: item.GioiTinh == "Nam" ? "<div class='gender'><i class='fa fa-male' aria-hidden='true'> Nam</i></div> " : "<div class='gender'><i class='fa fa-female' aria-hidden='true'> Nữ</i></div> ",
                         HocBong: item.HocBong
                     });
                 })
@@ -94,7 +95,6 @@
             dateType: 'json',
             success: function (response) {
                 if (response.mes == "success") alert("Success!");
-                else alert("Fail!");
             }
         })
     },
@@ -114,6 +114,13 @@
                 else alert("Fail!");
             }
         })
+    },
+    resetForm: function () {
+        $('#masv').val(0);
+        $('#hoten').val("");
+        $('#tenlop').val(0);
+        $('#ngaysinh').val("dd/MM/yyyy");
+        $('#hocbong').val("");
     }
 }
 

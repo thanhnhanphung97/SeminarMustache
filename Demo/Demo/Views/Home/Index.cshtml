@@ -35,6 +35,13 @@
         padding: 4px 10px;
         margin-top: -5px;
     }
+    .gender {
+        padding: 5px;
+        margin-top: -5px;
+    }
+    body {
+        font-size: 16px;
+    }
 </style>
 
 @section scripts {
@@ -67,7 +74,7 @@
             <td>{{HoTen}}</td>
             <td>{{NgaySinh}}</td>
             <td>{{TenLop}}</td>
-            <td>{{GioiTinh}}</td>
+            <td>{{{GioiTinh}}}</td>
             <td>{{HocBong}}</td>
             <td>
                 <div data-id="{{Id}}" class="btn btn-info btn-edit">Edit</div> |
@@ -116,10 +123,9 @@
                     <div class="col-md-4"><label>Giới Tính:</label></div>
                     <div class="col-md-8"><input type="checkbox" id="gioitinh"/> Nam</div>
                 </div>
-
                 <div class="modal-footer">
-                    <div id="btnSave" class="btn btn-default" data-dismiss="modal">Save</div>
-                    <div type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 50px;">Close</div>
+                    <div type="button" class="btn btn-default" data-dismiss="modal" >Close</div>
+                    <div id="btnSave" class="btn btn-info" style="margin-right: 50px;" data-dismiss="modal">Save</div>
                 </div>
             </div>
         </div>
